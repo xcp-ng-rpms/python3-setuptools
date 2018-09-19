@@ -15,8 +15,8 @@
 
 Name:           python3-setuptools
 # When updating, update the bundled libraries versions bellow!
-Version:        39.2.0
-Release:        10%{?dist}
+Version:        40.4.1
+Release:        1.0.1%{?dist}
 Summary:        Easily build and distribute Python 3 packages
 
 Group:          Applications/System
@@ -146,7 +146,7 @@ rm -r docs/{Makefile,conf.py,_*}
 # --ignore=setuptools/tests/test_virtualenv.py: because virtualenv executable
 #   is configured only for Python 2 version of virtualenv—this needs to be fixed
 #   in the `python-pytest-virtualenv` package
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$(pwd) py.test-%{python3_version} --ignore=setuptools/tests/test_virtualenv.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$(pwd) py.test-%{python3_version} --ignore=setuptools/tests/test_virtualenv.py --ignore=pavement.py
 %endif # with tests
 
 
@@ -161,6 +161,12 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$(pwd) py.test-%{python3_version} --ignore=
 
 
 %changelog
+* Wed Jan 22 2025 Yann Dirson <yann.dirson@vates.tech> - 40.4.1-1.0.1
+- Cherry-pick:
+  * Wed Sep 19 2018 Randy Barlow <bowlofeggs@fedoraproject.org> - 40.4.1-1
+  - Update to 40.4.1 (#1599307).
+  - https://github.com/pypa/setuptools/blob/v40.4.1/CHANGES.rst
+
 * Thu Mar 21 2019 Tomas Orsava <torsava@redhat.com> - 39.2.0-10
 - Add a workaround for a bug in bytecompilation (rhbz#1691402)
 Resolves: rhbz#1660563
