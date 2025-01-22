@@ -105,6 +105,7 @@ find setuptools pkg_resources -name \*.py | xargs sed -i -e '1 {/^#!\//d}'
 rm -f setuptools/*.exe
 # These tests require internet connection
 rm setuptools/tests/test_integration.py 
+python3 ./bootstrap.py
 
 %build
 %if %{without bootstrap}
@@ -166,6 +167,7 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$(pwd) py.test-%{python3_version} --ignore=
   * Wed Sep 19 2018 Randy Barlow <bowlofeggs@fedoraproject.org> - 40.4.1-1
   - Update to 40.4.1 (#1599307).
   - https://github.com/pypa/setuptools/blob/v40.4.1/CHANGES.rst
+- Run bootstrap.py in prep (or setup.py cannot run)
 
 * Thu Mar 21 2019 Tomas Orsava <torsava@redhat.com> - 39.2.0-10
 - Add a workaround for a bug in bytecompilation (rhbz#1691402)
