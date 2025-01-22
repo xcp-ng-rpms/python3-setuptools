@@ -8,9 +8,9 @@
 %bcond_with tests
 
 %if %{without bootstrap}
-%global python_wheelname %{srcname}-%{version}-py2.py3-none-any.whl
+%global python_wheelname %{srcname}-%{version}*-py2.py3-none-any.whl
 %global python3_wheelname %python_wheelname
-%global python3_record %{python3_sitelib}/%{srcname}-%{version}.dist-info/RECORD
+%global python3_record %{python3_sitelib}/%{srcname}-%{version}*.dist-info/RECORD
 %endif
 
 Name:           python3-setuptools
@@ -168,6 +168,8 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$(pwd) py.test-%{python3_version} --ignore=
   - Update to 40.4.1 (#1599307).
   - https://github.com/pypa/setuptools/blob/v40.4.1/CHANGES.rst
 - Run bootstrap.py in prep (or setup.py cannot run)
+- (hack) Adjust wheel name with a wildcard to cope with the 40.4.1.post20250122
+version it comes up with
 
 * Thu Mar 21 2019 Tomas Orsava <torsava@redhat.com> - 39.2.0-10
 - Add a workaround for a bug in bytecompilation (rhbz#1691402)
